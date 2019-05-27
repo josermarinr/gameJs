@@ -37,6 +37,26 @@ document.addEventListener('keydown', function(evento){
         }
     }
 });
+
+   ///------------------------------------------------------------------------------------------------
+    //detectando el mouse
+    document.addEventListener('click', function(eventoMouse){
+    
+        if(eventoMouse.clientX > FujiC.x){
+            logicaCamina();
+            logicaDelante();
+        }else{
+            logicaCamina();
+            logicaDetras();
+        }
+        if(eventoMouse.clientY < FujiC.y){
+            saltar();
+            logicaCamina();
+        }
+        var PosX = event.clientX
+        console.log(PosX)
+    });
+    
     
 //-----------------------3-------------------------------------------------------------
 
