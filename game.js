@@ -14,27 +14,12 @@
         
         
         if(evento.keyCode == 32){
-          
-            
+                      
             console.log("salta");
-           
-            if (nivel.muerto == false){
+                   
             saltar();
             logicaCamina();
-            }else  {
-                FujiC.vy = 0; 
-                nivel.velocidad = 9;
-                nube.velocidad = 1;
-                cactus.x = ancho + 100;
-                nivel.puntos = 0;
-                nube.x = ancho + 100;
-                nivel.muerto = false;
-                FujiC.paso1=0;
-                FujiC.velocidad= 86; 
-                imgRexC.src = '/img/fujic.png';
-                
-                
-            }
+            
         }
     });
     

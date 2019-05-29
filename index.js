@@ -14,27 +14,11 @@ document.addEventListener('keydown', function(evento){
     
     
     if(evento.keyCode == 32){
-      
-        
-        console.log("salta");
-       
-        if (nivel.muerto == false){
+             
+        console.log("salta");     
         saltar();
         logicaCamina();
-        }else  {
-            FujiC.vy = 0; 
-            nivel.velocidad = 9;
-            nube.velocidad = 1;
-            cactus.x = ancho + 100;
-            nivel.puntos = 0;
-            nube.x = ancho + 100;
-            nivel.muerto = false;
-            FujiC.paso1=0;
-            FujiC.velocidad= 86; 
-            imgRexC.src = '/img/fujic.png';
-            
-            
-        }
+      
     }
 });
 
@@ -57,7 +41,23 @@ document.addEventListener('keydown', function(evento){
         console.log(PosX)
     });
     
-    
+//---------------------------------------------------------------------------------------
+//detectando el tactil
+object.addEventListener("touchmove", function(eventoTouch){
+    if (eventoTouch.clientX > FujiC.x){
+            logicaCamina();
+            logicaDelante();
+    }else{
+            logicaCamina();
+            logicaDetras();
+    }
+    if (eventoTouch.clientY < FujiC.y){
+        saltar();
+        logicaCamina();
+    } 
+    var TouchX = event.clientX
+        console.log("el tactil es" +TouchX);
+});
 //-----------------------3-------------------------------------------------------------
 
 var canvas, ctx;
