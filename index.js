@@ -43,20 +43,22 @@ document.addEventListener('keydown', function(evento){
     
 //---------------------------------------------------------------------------------------
 //detectando el tactil
-object.addEventListener("touchmove", function(eventoTouch){
-    if (eventoTouch.clientX > FujiC.x){
+document.addEventListener('touchmove', function(touch){
+    if (touch.touches[0].clientX > FujiC.x){
             logicaCamina();
             logicaDelante();
     }else{
             logicaCamina();
             logicaDetras();
     }
-    if (eventoTouch.clientY < FujiC.y){
+    if (touch.touches[0].clientY < FujiC.y){
         saltar();
         logicaCamina();
     } 
-    var TouchX = event.clientX
+    /*var TouchX = touch.touches[0].clientX;
         console.log("el tactil es" +TouchX);
+    var TouchY = touch.touches[0].clientY;   
+       console.log("el tactil y es" +TouchY);*/
 });
 //-----------------------3-------------------------------------------------------------
 
@@ -236,7 +238,7 @@ var nube    = {x:-ancho*0.3, y: alto*0.4, velocidad:0.5, };
             function RandomPositionCoin(min, max) {
                 return Math.random() * (max - min) + min;
             }
-            console.log("el numero rando es" + RandomPositionCoin(100, ancho));
+            //console.log("el numero rando es" + RandomPositionCoin(100, ancho));
                     
           
             var i = RandomPositionCoin(80, ancho-50);
@@ -289,15 +291,15 @@ function pointAdd(){
 
       nivel.point ++;
       
-  }     console.log("esto es i" + coin.x); 
+  }     //console.log("esto es i" + coin.x); 
      
-    console.log("tus puntos son" + nivel.puntos);
+   // console.log("tus puntos son" + nivel.puntos);
   
 }
 
 var positionX, positiony, pxGameOver, pyGameOver;
-        positionX = ancho - (ancho*(10/100));
-        positiony =  alto - alto*(90/100);
+        positionX = ancho *1.1;
+        positiony =  alto *0.1;
         pxGameOver =  ancho - ancho*(50/100);
         pyGameOver = alto - alto*(50/100);
         var gameOverText = {x: ancho + 100 , y: suelo - 15, velocidad: 9};
