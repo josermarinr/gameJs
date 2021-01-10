@@ -353,13 +353,16 @@ var FPSCaminando = 2;
         gravedad();
         pointAdd();
         //------
-        dibujaBack();
-        dibujaNubes();
-        dibujaFarRock();
-        dibujaPiso();
-        puntuacion();
+        window.onload(
+            dibujaBack(),
+            dibujaNubes(),
+            dibujaFarRock(),
+            dibujaPiso(),
+            dibujandoCoin(),
+            dibujandoFuji()
+        )
+       
         //-----
-        dibujandoCoin();
+        puntuacion();
         cambiarCoin();
-        dibujandoFuji();
     }; 
