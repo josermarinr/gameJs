@@ -294,7 +294,7 @@
             return nivel.puntos;
         }
         function textofinal(){
-            return "c'est fini"
+            return "game over"
         }
         
     }

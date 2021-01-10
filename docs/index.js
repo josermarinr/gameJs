@@ -1,19 +1,19 @@
 //--------------------1-----------------------------------------
 document.addEventListener('keydown', function(evento){
-    if (evento.keyCode == 39) {
+    if (evento.code == 'ArrowRight') {
         logicaCamina();
         logicaDelante();
     }
-    if (evento.keyCode == 37){
+    if (evento.code == 'ArrowLeft'){
         logicaCamina();
         logicaDetras();
-    }if(evento.keyCode == 38){
+    }if(evento.code == 'ArrowUp'){
         saltar();
         logicaCamina();
     }
     
     
-    if(evento.keyCode == 32){
+    if(evento.code == 32){
              
         console.log("salta");     
         saltar();
@@ -137,6 +137,7 @@ function logicaDelante(){
 
 function logicaDetras(){
         if (FujiC.x > 0 && FujiC.x <= ancho ){
+            
             FujiC.x -= FujiC.velX;
         }else {
             FujiC.x == 0
@@ -324,7 +325,7 @@ function puntuacion(){
         return nivel.puntos;
     }
     function textofinal(){
-        return "c'est fini"
+        return "Game Over"
     }
     
 }
