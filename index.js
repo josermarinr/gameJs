@@ -340,7 +340,7 @@ var FPSCaminando = 2;
     var FPS = 15;
       
     setInterval(function(){
-        window.onload(principal())
+      window.onload(principal())
     },1000/FPS);
 
     setInterval(function(){
