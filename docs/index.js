@@ -1,23 +1,24 @@
 //--------------------1-----------------------------------------
-document.addEventListener('keydown', function (evento) {
-    switch (evento.code) {
-        case evento.code == 'ArrowRight':
-            logicaCamina();
-            logicaDelante();
-        case evento.code == 'ArrowLeft':
-            logicaCamina();
-            logicaDetras();;
-        case evento.code == 'ArrowUp':
-            saltar();
-            logicaCamina();
+document.addEventListener("keydown", function (evento) {
+
+    if (evento.code === "ArrowRight") {
+        logicaCamina();
+        logicaDelante();
+    }
+    if (evento.code === "ArrowLeft") {
+        logicaCamina();
+        logicaDetras();
+    }
+    if (evento.code === "ArrowUp") {
+        saltar();
+        logicaCamina();
     }
 
 });
 
 ///------------------------------------------------------------------------------------------------
 //detectando el mouse
-document.addEventListener('click', function (eventoMouse) {
-
+document.addEventListener("click", function (eventoMouse) {
     if (eventoMouse.clientX > FujiC.x) {
         logicaCamina();
         logicaDelante();
@@ -33,7 +34,7 @@ document.addEventListener('click', function (eventoMouse) {
 
 //---------------------------------------------------------------------------------------
 //detectando el tactil
-document.addEventListener('touchmove', function (touch) {
+document.addEventListener("touchmove", function (touch) {
     if (touch.touches[0].clientX > FujiC.x) {
         logicaCamina();
         logicaDelante();
@@ -46,20 +47,19 @@ document.addEventListener('touchmove', function (touch) {
         logicaCamina();
     }
     /*var TouchX = touch.touches[0].clientX;
-        console.log("el tactil es" +TouchX);
-    var TouchY = touch.touches[0].clientY;   
-       console.log("el tactil y es" +TouchY);*/
+          console.log("el tactil es" +TouchX);
+      var TouchY = touch.touches[0].clientY;   
+         console.log("el tactil y es" +TouchY);*/
 });
 //-----------------------3-------------------------------------------------------------
 
 var canvas, ctx;
 
-function inicial() {
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
+async function  inicial() {
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
     cargarImagenes();
 }
-
 
 function borrarCanvas() {
     canvas.width = window.innerWidth;
@@ -71,7 +71,6 @@ function borrarCanvas() {
 var imgNube, imgTree, imgSuelo, imgfujiC, imgBack, imgFarRock, imgCoin;
 
 function cargarImagenes() {
-
     imgfujiC = new Image();
     imgNube = new Image();
     imgCoin = new Image();
@@ -80,14 +79,14 @@ function cargarImagenes() {
     imgBack = new Image();
     imgFarRock = new Image();
 
-    imgfujiC.src = '/img/fujic.png';
+    imgfujiC.src = "/img/fujic.png";
 
-    imgNube.src = '/img/clouds.png';
-    imgCoin.src = '/img/coin.png'
-    imgSuelo.src = '/img/rock.png';
+    imgNube.src = "/img/clouds.png";
+    imgCoin.src = "/img/coin.png";
+    imgSuelo.src = "/img/rock.png";
 
-    imgBack.src = '/img/back.png';
-    imgFarRock.src = '/img/farrock.png'
+    imgBack.src = "/img/back.png";
+    imgFarRock.src = "/img/farrock.png";
 }
 
 //-------------------------5---------------------------------------------------
@@ -107,15 +106,11 @@ var FujiC = {
     vymax: 9,
     saltando: false,
     x: 0,
-    velX: 10
+    velX: 10,
 };
 
-
-
 function dibujandoFuji() {
-
-    ctx.drawImage(imgfujiC, FujiC.paso1, 0, 100, 121, FujiC.x, FujiC.y, 60, 61)
-
+    ctx.drawImage(imgfujiC, FujiC.paso1, 0, 100, 121, FujiC.x, FujiC.y, 60, 61);
 }
 
 function logicaCamina() {
@@ -124,7 +119,6 @@ function logicaCamina() {
     } else {
         FujiC.paso1 -= FujiC.velocidad;
     }
-
 }
 
 function logicaDelante() {
@@ -137,34 +131,26 @@ function logicaDelante() {
 
 function logicaDetras() {
     if (FujiC.x > 0 && FujiC.x <= ancho) {
-
         FujiC.x -= FujiC.velX;
     } else {
-        FujiC.x == 0
+        FujiC.x == 0;
     }
 }
 
 function saltar() {
-
     FujiC.vy = FujiC.salto;
     FujiC.saltando = true;
-
 }
-
-
 
 function gravedad() {
     if (FujiC.saltando == true) {
-
         if (FujiC.y - FujiC.vy - FujiC.gravedad > suelo) {
             FujiC.saltando = false;
             FujiC.vy = 0;
             FujiC.y = suelo + 10;
         } else {
-
             FujiC.vy -= FujiC.gravedad;
             FujiC.y -= FujiC.vy;
-
         }
     }
 }
@@ -173,8 +159,8 @@ function gravedad() {
 
 var piso = {
     x: 0,
-    y: suelo - 190
-}
+    y: suelo - 190,
+};
 
 var altoPiso = 320;
 if (alto <= 720) {
@@ -183,11 +169,9 @@ if (alto <= 720) {
     altoPiso = alto * 0.2;
 }
 
-
 function dibujaPiso() {
-    ctx.drawImage(imgSuelo, piso.x, 0, 1600, 320, 0, piso.y, 1600, 320)
+    ctx.drawImage(imgSuelo, piso.x, 0, 1600, 320, 0, piso.y, 1600, 320);
 }
-
 
 function logicaPiso() {
     if (piso.x > 1400) {
@@ -204,8 +188,8 @@ var tree = {
 
 var farrock = {
     x: 0,
-    y: 0
-}
+    y: 0,
+};
 
 function dibujaBack() {
     ctx.drawImage(imgBack, 0, 0, 1600, 320, 0, 0, 1600, alto);
@@ -227,7 +211,6 @@ function dibujaNubes() {
 
 function logicaNube() {
     if (FujiC.x > 0) {
-
         nube.velocidad += 0.01;
         nube.x -= nube.velocidad;
     } else {
@@ -251,25 +234,22 @@ function RandomPositionCoin(min, max) {
 }
 //console.log("el numero rando es" + RandomPositionCoin(100, ancho));
 
-
 var i = RandomPositionCoin(80, ancho - 50);
 
 var coin = {
     velocidad: 70,
     step1: 0,
     x: i,
-    y: suelo
-}
+    y: suelo,
+};
 
 function dibujandoCoin() {
     // 0 70 140 210 280 350
 
-    ctx.drawImage(imgCoin, coin.step1, 0, 70, 66, coin.x, coin.y, 33, 36)
-
+    ctx.drawImage(imgCoin, coin.step1, 0, 70, 66, coin.x, coin.y, 33, 36);
 }
 
 function logicaCoin1() {
-
     if (coin.step1 >= 0 && coin.step1 < 410) {
         coin.step1 += coin.velocidad;
     } else {
@@ -278,7 +258,6 @@ function logicaCoin1() {
 }
 
 function logicaCoin1() {
-
     if (coin.step1 <= 420 && coin.step1 <= 0) {
         coin.step1 = coin.velocidad;
     } else {
@@ -286,7 +265,7 @@ function logicaCoin1() {
     }
 }
 //-------------------------8--------------------------------------------------------------
-//puntuacion ----------------------------------- 
+//puntuacion -----------------------------------
 
 var nivel = {
     velocidad: 9,
@@ -298,26 +277,17 @@ var nivel = {
 function pointAdd() {
     if (FujiC.x >= coin.x - 1 && FujiC.x <= coin.x + 15) {
         nivel.puntos++;
-
-
-
     }
-
 }
 
 function cambiarCoin() {
     if (nivel.point != nivel.puntos) {
-
-        coin.x =
-            RandomPositionCoin(50, ancho - 50);
-
+        coin.x = RandomPositionCoin(50, ancho - 50);
 
         nivel.point++;
-
-    } //console.log("esto es i" + coin.x); 
+    } //console.log("esto es i" + coin.x);
 
     // console.log("tus puntos son" + nivel.puntos);
-
 }
 
 var positionX, positiony, pxGameOver, pyGameOver;
@@ -328,10 +298,8 @@ pyGameOver = alto - alto * (50 / 100);
 var gameOverText = {
     x: ancho + 100,
     y: suelo - 15,
-    velocidad: 9
+    velocidad: 9,
 };
-
-
 
 function puntuacion() {
     ctx.font = "20px 'Press Start 2P'";
@@ -343,37 +311,29 @@ function puntuacion() {
         ctx.fillText(textofinal(), pxGameOver, pyGameOver);
     }
     if (ancho < 1200) {
-        gameOverText -= gameOverText.velocidad
+        gameOverText -= gameOverText.velocidad;
     }
-
-
 
     function newFunction() {
         return nivel.puntos;
     }
 
     function textofinal() {
-        return "Game Over"
+        return "Game Over";
     }
-
 }
-
-
-
-
 
 //---------------------2-----------------------------------------------------------------------------------
 
 var FPSCaminando = 2;
 var FPS = 15;
 
-setInterval(function () {
-    window.onload(principal())
+setInterval(async function () {
+    principal()
 }, 1000 / FPS);
 
 setInterval(function () {
     logicaCoin1();
-
 }, 10000 / FPSCaminando);
 
 function principal() {
@@ -381,16 +341,15 @@ function principal() {
     gravedad();
     pointAdd();
     //------
-    window.onload(
-        dibujaBack(),
+
+    dibujaBack(),
         dibujaNubes(),
         dibujaFarRock(),
         dibujaPiso(),
         dibujandoCoin(),
-        dibujandoFuji()
-    )
+        dibujandoFuji();
 
     //-----
     puntuacion();
     cambiarCoin();
-};
+}
